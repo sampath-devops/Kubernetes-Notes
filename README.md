@@ -28,8 +28,8 @@
                         Fault tolerance
                         Observability and alerts
         Docker alone cannot provide these features.
-   
-    **Docker vs Kubernetes**(COMPARISON DIAGRAM)
+
+   # Docker vs Kubernetes**(COMPARISON DIAGRAM)
 
                  ┌───────────────────────────┐
                  │         APPLICATION        │
@@ -52,7 +52,7 @@
                                │
                          Limitations
                                ▼
-        ============================================================== 
+   ============================================================== 
                                ▼
                     ┌───────────────────┐
                     │    KUBERNETES     │
@@ -79,6 +79,8 @@
           │ • Load Balancing & Service Discovery              │
           │ • Enterprise Production-Ready                     │
           └──────────────────────────────────────────────────┘
+
+
           ┌───────────────┐          ┌─────────────────────────┐
           │   DOCKER       │   vs.    │        KUBERNETES       │
           └───────────────┘          └─────────────────────────┘
