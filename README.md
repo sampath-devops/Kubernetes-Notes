@@ -30,9 +30,8 @@
         Docker alone cannot provide these features.
 
    # Docker vs Kubernetes**(COMPARISON DIAGRAM)
-
                  ┌───────────────────────────┐
-                 │         APPLICATION        │
+                 │         APPLICATION       │
                  └───────────────────────────┘
                                │
                                ▼
@@ -43,16 +42,19 @@
                     ┌──────────────────────┐
                     │   Docker Engine       │
                     │  ────────────────     │
-   Build Image ---->│  Images & Containers  │
-                    │                        │
-   Run Container -->│  Manual Scaling        │
-                    │  Manual Healing        │
-                    │  No Multi-Node         │
+   Build Image ---->│
+                       Images & Containers  │
+                    │                       │
+
+   Run Container -->│
+                       Manual Scaling       │
+                    │  Manual Healing       │
+                    │  No Multi-Node        │
                     └──────────────────────┘
                                │
                          Limitations
                                ▼
-   ============================================================== 
+    ============================================================== 
                                ▼
                     ┌───────────────────┐
                     │    KUBERNETES     │
@@ -60,7 +62,7 @@
                      (Multi-Node Cluster)
         ┌──────────────────────┬─────────────────────────┬───────────────────────┐
         │ Control Plane        │ Worker Nodes            │ External Integrations │
-        │                       │                         │ (Ingress, LB, etc.)  │
+        │                      │                         │ (Ingress, LB, etc.)   │
         ├──────────────────────┼─────────────────────────┼───────────────────────┤
         │ API Server           │ Kubelet                 │ Auto-Scaling          │
         │ Scheduler            │ Container Runtime       │ Load Balancing        │
@@ -79,8 +81,9 @@
           │ • Load Balancing & Service Discovery              │
           │ • Enterprise Production-Ready                     │
           └──────────────────────────────────────────────────┘
-
-
+		  
+		  
+		  
           ┌───────────────┐          ┌─────────────────────────┐
           │   DOCKER       │   vs.    │        KUBERNETES       │
           └───────────────┘          └─────────────────────────┘
@@ -90,6 +93,7 @@
           │ No Orchestration          │ Full Orchestration
           │ Not HA Ready              │ Highly Available
           └───────────────┘          └─────────────────────────┘
+
 
 
 # Kubernetes Architecture
