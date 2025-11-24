@@ -45,8 +45,8 @@
    Build Image ---->│
                        Images & Containers  │
                     │                       │
-
-   Run Container -->│
+   					|						|
+   Run Container -->   │                       |
                        Manual Scaling       │
                     │  Manual Healing       │
                     │  No Multi-Node        │
@@ -100,8 +100,11 @@
 <img width="1054" height="661" alt="image" src="https://github.com/user-attachments/assets/1d267932-7ef9-4560-8759-02157c33379c" />
 
 1 Control Plane (Master Node)
-	Responsible for managing and controlling the cluster.
-		Key Components:
+
+	- Responsible for managing and controlling the cluster
+	
+		- Key Components:
+		
 			- API Server 
 				 --> The core entry point to the Kubernetes cluster.
 				 --> All requests (kubectl, UI, automation tools) go through API Server.
@@ -132,17 +135,20 @@
 				--> Storage volumes
 				--> Cloud-specific integrations
 
-2. Data Plane (Worker Nodes) : Responsible for actually running the application workloads.
-   		Key Components:
-   			- Kubelet : Agent running on each worker node. Responsible for running Pods, Monitoring container health and Communicating status to API Server
-						Example If a pod fails → kubelet reports it to API server so Kubernetes can recreate it.
+2. Data Plane (Worker Nodes) :
+    - Responsible for actually running the application workloads
+   		- Key Components:
+   			- Kubelet : Agent running on each worker node. Responsible for running Pods
+                         - Monitoring container health and Communicating status to API Server
+						 - Example If a pod fails → kubelet reports it to API server so Kubernetes can recreate it
 
-			- Container Runtime : Responsible for running containers inside pods.
-   							      Popular runtimes:
+			- Container Runtime : Responsible for running containers inside pods
+   									- Popular runtimes:
    										--> containerd
    										--> CRI-O
-				NOTE: Kubernetes uses OCI-compatible runtimes.
-			- Kube-Proxy : Provides networking for pods. Manages:
+				 - NOTE: Kubernetes uses OCI-compatible runtimes
+			- Kube-Proxy : Provides networking for pods
+     - 												- It Manages:
    															--> Pod-to-Pod communication
    															--> Service load balancing
    															--> Cluster networking rules
