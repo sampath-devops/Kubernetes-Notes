@@ -99,4 +99,50 @@
 # Kubernetes Architecture
 <img width="1054" height="661" alt="image" src="https://github.com/user-attachments/assets/1d267932-7ef9-4560-8759-02157c33379c" />
 
+1 Control Plane (Master Node)
+	Responsible for managing and controlling the cluster.
+		Key Components:
+			- API Server 
+				 --> The core entry point to the Kubernetes cluster.
+				 --> All requests (kubectl, UI, automation tools) go through API Server.
+				 --> Validates and processes API calls.
+			- Scheduler: Decides on which worker node a pod should run.
+				--> Available resources
+				--> Node capacity
+				--> Policies
+				--> Constraints
+			- etcd: A distributed key-value store, Stores complete cluster state, including:
+				--> Pod details
+				--> ConfigMaps
+				--> Secrets
+				--> Node info
+				--> Networking info
+				--> Acts as the backup and source of truth for Kubernetes.
 
+			- Controller Manager: Contains multiple controllers such as
+				--> Node Controller
+				--> ReplicaSet Controller
+				--> Deployment Controller
+				--> Endpoint Controller
+					These continuously monitor the cluster and ensure desired state.Example:If 3 pods are required and one dies → controller recreates it.
+
+			- Cloud Controller Manager: Used in cloud environments (AWS, Azure, GCP). It Manages:
+				--> Load balancers 
+				--> Node lifecycle
+				--> Storage volumes
+				--> Cloud-specific integrations
+
+2. Data Plane (Worker Nodes) : Responsible for actually running the application workloads.
+   		Key Components:
+   			- Kubelet : Agent running on each worker node. Responsible for running Pods, Monitoring container health and Communicating status to API Server
+						Example If a pod fails → kubelet reports it to API server so Kubernetes can recreate it.
+
+			- Container Runtime : Responsible for running containers inside pods.
+   							      Popular runtimes:
+   										--> containerd
+   										--> CRI-O
+				NOTE: Kubernetes uses OCI-compatible runtimes.
+			- Kube-Proxy : Provides networking for pods. Manages:
+   															--> Pod-to-Pod communication
+   															--> Service load balancing
+   															--> Cluster networking rules
