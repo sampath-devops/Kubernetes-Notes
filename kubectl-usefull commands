@@ -1,4 +1,4 @@
-Getting Information:
+## Getting Information:
 kubectl get pods: Lists all pods in the current namespace.
 kubectl get deployments: Lists all deployments in the current namespace.
 kubectl get services: Lists all services in the current namespace.
@@ -9,7 +9,7 @@ kubectl get pods -o wide: Provides more detailed information about pods, includi
 kubectl describe pod <pod-name>: Displays detailed information about a specific pod, including events, conditions, and resource usage.
 kubectl logs <pod-name>: Shows the logs from a specific pod's container. Use --previous to view logs from a crashed container.
 kubectl get events -A --sort-by='.lastTimestamp': Shows recent cluster-wide events, useful for troubleshooting.
-Managing Resources:
+## Managing Resources:
 kubectl apply -f <filename.yaml>: Creates or updates resources defined in a YAML file.
 kubectl create -f <filename.yaml>: Creates resources defined in a YAML file.
 kubectl delete -f <filename.yaml>: Deletes resources defined in a YAML file.
@@ -17,7 +17,7 @@ kubectl delete pod <pod-name>: Deletes a specific pod.
 kubectl delete deployment <deployment-name>: Deletes a specific deployment.
 kubectl rollout restart deployment <deployment-name>: Restarts a deployment.
 kubectl scale deployment <deployment-name> --replicas=N: Scales a deployment to a specified number of replicas.
-Troubleshooting and Interaction:
+## Troubleshooting and Interaction:
 kubectl exec -it <pod-name> -- /bin/sh: Opens an interactive shell within a running container in a pod.
 kubectl port-forward svc/<service-name> <local-port>:<container-port>: Forwards a local port to a port on a service or pod, allowing local access to a service running in the cluster.
 kubectl top pods: Shows resource usage (CPU/memory) for pods (requires Metrics Server).
