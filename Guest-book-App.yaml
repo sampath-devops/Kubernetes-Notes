@@ -1,0 +1,143 @@
+# Manifest for the Guest Book App
+# This manifest creates the following Kubernetes resources:
+# - Deployment for the Redis master
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-master
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: master-redis-nautilus
+          image: redis:alpine
+          ports:
+            - containerPort: 6379
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "100Mi"
+              cpu: "100m"
+
+---
+# Service for the Redis master
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP 
+      port: 6379
+      targetPort: 6379   
+
+---
+# Deployment for the Redis slave
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-slave
+  labels:
+    app: redis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: slave-redis-nautilus
+          image: gcr.io/google_samples/gb-redisslave:v3
+          ports:
+            - containerPort: 6379
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "100Mi"
+              cpu: "100m"     
+
+---
+# Service for the Redis slave
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-slave
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP 
+      port: 6379
+      targetPort: 6379  
+
+---
+# Deployment for the Guest Book App frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+        - name: php-redis-nautilus
+          image: gcr.io/google-samples/gb-frontend@sha256:a908df8486ff66f2c4daa0d3d8a2fa09846a1fc8efd65649c0109695c7c5cbff
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "100Mi"
+              cpu: "100m"
+          env:
+            - name: GET_HOSTS_FROM
+              value: "dns"
+
+---
+# Service for the Guest Book App frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: guestbook
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30009
+  type: NodePort
+
+
+    
